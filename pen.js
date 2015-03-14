@@ -97,11 +97,6 @@
 	  This is an interesting addition to typical turtle features, and can be a huge time
 	  (math) saver.
 
-	- `set()` and `home()`
-
-	  Stores current position, angle and origin. A call to `home()` performs a move
-	  to this position. Limited use convenience; it doesn't quite work yet and may go away.
-
 	- `angle(direction)`
 
 	  Resets the pen's current direction relative to the page (0 degrees is "up").
