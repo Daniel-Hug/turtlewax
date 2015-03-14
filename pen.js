@@ -140,11 +140,13 @@ Pen.prototype = {
 
 	fillstyle: function(style) {
 		this.fillStyle = this.canvas.fillStyle = style;
+
 		return this;
 	},
 
 	angle: function(a) {
 		this.dir = a - 90;
+
 		return this;
 	},
 
@@ -208,9 +210,7 @@ Pen.prototype = {
 	},
 
 	close: function() {
-		this.canvas.closePath();
-
-		return this;
+		return this.goto(this.ox, this.oy);
 	},
 
 	draw: function() {
@@ -294,6 +294,7 @@ Pen.prototype = {
 
 	font: function(str) {
 		this.canvas.font = str;
+
 		return this;
 	}
 };
