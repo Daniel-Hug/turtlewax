@@ -123,6 +123,14 @@ Pen = function(tag) {
 	this.ox = 0;
 	this.oy = 0;
 
+	// how far the content expands in each direction from the origin
+	this.contentBounds = {
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0
+	};
+
 	this.pen = true;
 
 	this.canvas.beginPath();
@@ -145,11 +153,22 @@ Pen.prototype = {
 		return this;
 	},
 
+	checkContentBounds: function(r) {
+		// expand content bounds
+		if (this.x < contentBounds.left) contentBounds.left = this.x;
+		if (this.x > contentBounds.right) contentBounds.right = this.x;
+		if (this.y < contentBounds.top) contentBounds.top = this.x;
+		if (this.y > contentBounds.bottom) contentBounds.bottom = this.x;
+
+		return this;
+	},
+
 	go: function(r) {
 		var a = this.toRad(this.dir);
 
 		this.x += r * Math.cos(a);
 		this.y += r * Math.sin(a);
+		this.checkContentBounds();
 
 		if (this.pen)
 			this.canvas.lineTo(this.x, this.y);
@@ -215,6 +234,7 @@ Pen.prototype = {
 	goto: function(x, y) {
 		this.x = x;
 		this.y = y;
+		this.checkContentBounds();
 
 		if (!this.pen)
 			this.canvas.moveTo(x, y);
@@ -256,6 +276,7 @@ Pen.prototype = {
 
 		this.x = this.ox + r * Math.cos(a);
 		this.y = this.oy + r * Math.sin(a);
+		this.checkContentBounds();
 
 		if (this.pen)
 			this.canvas.lineTo(this.x, this.y);
