@@ -180,6 +180,12 @@ Pen.prototype = {
 		return this.goto(this.x + r * Math.cos(a), this.y + r * Math.sin(a));
 	},
 
+	polar: function(r, angle) {
+		var a = this.toRad(angle + this.dir);
+
+		return this.goto(this.ox + r * Math.cos(a), this.oy + r * Math.sin(a));
+	},
+
 	back: function(r) {
 		this.turn(-180);
 		this.go(r);
@@ -258,21 +264,6 @@ Pen.prototype = {
 
 	right: function(r) {
 		return this.goto(this.x + r, this.y);
-	},
-
-	polar: function(r, angle) {
-		var a = this.toRad(angle + this.dir);
-
-		this.x = this.ox + r * Math.cos(a);
-		this.y = this.oy + r * Math.sin(a);
-		this.checkContentBounds();
-
-		if (this.pen)
-			this.canvas.lineTo(this.x, this.y);
-		else
-			this.canvas.moveTo(this.x, this.y);
-
-		return this;
 	},
 
 	origin: function() {
