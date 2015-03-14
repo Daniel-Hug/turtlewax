@@ -164,19 +164,20 @@ Pen.prototype = {
 		return t;
 	},
 
+	goto: function(x, y) {
+		this.x = x;
+		this.y = y;
+		this.checkContentBounds();
+
+		this.canvas[this.pen ? 'lineTo' : 'moveTo'](this.x, this.y);
+
+		return this;
+	},
+
 	go: function(r) {
 		var a = this.toRad(this.dir);
 
-		this.x += r * Math.cos(a);
-		this.y += r * Math.sin(a);
-		this.checkContentBounds();
-
-		if (this.pen)
-			this.canvas.lineTo(this.x, this.y);
-		else
-			this.canvas.moveTo(this.x, this.y);
-
-		return this;
+		return this.goto(this.x + r * Math.cos(a), this.y + r * Math.sin(a));
 	},
 
 	back: function(r) {
@@ -228,19 +229,6 @@ Pen.prototype = {
 
 	pendown: function() {
 		this.pen = true;
-
-		return this;
-	},
-
-	goto: function(x, y) {
-		this.x = x;
-		this.y = y;
-		this.checkContentBounds();
-
-		if (!this.pen)
-			this.canvas.moveTo(x, y);
-		else
-			this.canvas.lineTo(x, y);
 
 		return this;
 	},
