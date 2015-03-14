@@ -156,10 +156,10 @@ Pen.prototype = {
 	checkContentBounds: function(r) {
 		// expand content bounds
 		var t = this;
-		if (t.x < t.contentBounds.left) t.contentBounds.left = t.x;
+		if (t.y > t.contentBounds.top) t.contentBounds.top = t.x;
 		if (t.x > t.contentBounds.right) t.contentBounds.right = t.x;
-		if (t.y < t.contentBounds.top) t.contentBounds.top = t.x;
-		if (t.y > t.contentBounds.bottom) t.contentBounds.bottom = t.x;
+		if (t.y < t.contentBounds.bottom) t.contentBounds.bottom = t.x;
+		if (t.x < t.contentBounds.left) t.contentBounds.left = t.x;
 
 		return t;
 	},
