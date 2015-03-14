@@ -140,21 +140,9 @@ Pen.prototype = {
 		return this;
 	},
 
-	set: function() {
-		this.homes.push({ x: this.x, y: this.y, angle: this.dir });
-		return this;
-	},
-
 	angle: function(a) {
 		this.dir = a - 90;
 		return this;
-	},
-
-	home: function() {
-		var last = this.homes.pop();
-		this.dir = last.angle;
-
-		return this.goto(this.x, this.y);
 	},
 
 	go: function(r) {
