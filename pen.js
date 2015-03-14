@@ -155,8 +155,8 @@ Pen.prototype = {
 		var t = this;
 		if (t.y > t.contentBounds.top) t.contentBounds.top = t.y;
 		if (t.x > t.contentBounds.right) t.contentBounds.right = t.x;
-		if (t.y < t.contentBounds.bottom) t.contentBounds.bottom = t.y;
-		if (t.x < t.contentBounds.left) t.contentBounds.left = t.x;
+		if (-t.y > t.contentBounds.bottom) t.contentBounds.bottom = t.y;
+		if (-t.x > t.contentBounds.left) t.contentBounds.left = t.x;
 
 		return t;
 	},
