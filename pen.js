@@ -210,7 +210,9 @@ Pen.prototype = {
 	},
 
 	close: function() {
-		return this.goto(this.ox, this.oy);
+		this.canvas.moveTo(this.ox, this.oy);
+
+		return this;
 	},
 
 	draw: function() {
